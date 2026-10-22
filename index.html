@@ -6,6 +6,8 @@
 <title>limebox</title>
 <link rel="icon" href="limebox-icon.svg" type="image/svg+xml">
 <meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
 <style>
   html, body { height: 100%; margin: 0; }
   body { display: grid; place-items: center; background: #0a0c0d; color: #7d8784;
@@ -13,14 +15,15 @@
   #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
   main { position: relative; z-index: 1; text-align: center; }
   img { width: min(420px, 86vw); height: auto; display: block; }
-  p { margin: 20px 0 0; letter-spacing: .04em; }
+  p { margin: 24px 0 0; font: 400 15px/1.4 'JetBrains Mono', ui-monospace, monospace; color: #5f6b66; }
+  .swe { color: #4f8fc9; } .den { color: #e7c64a; } .heart { color: #a6ff3d; }
 </style>
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <main>
   <img src="limebox-logo.svg" alt="limebox">
-  <p>Coming soon.</p>
+  <p>// from <span class="swe">swe</span><span class="den">den</span> with love <span class="heart">&lt;3</span></p>
 </main>
 <script src="bg.js"></script>
 </body>
