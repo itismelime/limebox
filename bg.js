@@ -50,9 +50,9 @@
       let t = 0;
       if (p) {
         const dx = c.x - p.x, dy = c.y - p.y, e = Math.hypot((dx * ux + dy * uy) / ra, (-dx * uy + dy * ux) / rb);
-        if (e < reach) t = Math.cos(e * Math.PI / 2);
+        if (e < reach) t = Math.cos(e * Math.PI / 2) * Math.min(1, (reach - e) / 0.3 + (reach >= 1));  // soft shrinking edge
       }
-      c.m = t < c.m ? Math.max(c.m * (reach < 1 ? 0.8 : FADE), t) : t;  // trail; quicker once the pointer rests
+      c.m = t < c.m ? Math.max(c.m * (reach < 1 ? 0.88 : FADE), t) : t;  // trail; quicker once the pointer rests
       c.v += (c.m - c.l) * SPRING; c.v *= DAMP; c.l += c.v;   // a soft spring lifts them
       if (c.m < 0.02 && Math.abs(c.l) < 0.02) continue;
       const o = Math.max(c.l, 0), x = c.x, y = c.y - LIFT * o, al = Math.min(1, Math.max(c.m, o));
