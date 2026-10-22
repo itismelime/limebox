@@ -5,7 +5,7 @@
   const ctx = cv.getContext('2d');
   const S = 20, A = S * Math.sqrt(3) / 2, L = '166,255,61', R = 100;
   const IDLE_WAIT = 500, IDLE_SHRINK = 900;  // ms: a still pointer's lit area shrinks from the outside in
-  const STRETCH = 0.45, FADE = 0.93, SPRING = 0.06, DAMP = 0.87, LIFT = 7, GLOW = 0.5;
+  const STRETCH = 0.45, FADE = 0.93, SPRING = 0.18, DAMP = 0.72, LIFT = 9, GLOW = 0.5;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let W, H, cubes = [], p = null, prev = null, vx = 0, vy = 0, moved = 0;
 
@@ -53,9 +53,9 @@
         if (e < reach) t = Math.cos(e * Math.PI / 2) * Math.min(1, (reach - e) / 0.3 + (reach >= 1));  // soft shrinking edge
       }
       c.m = t < c.m ? Math.max(c.m * (reach < 1 ? 0.88 : FADE), t) : t;  // trail; quicker once the pointer rests
-      c.v += (c.m - c.l) * SPRING; c.v *= DAMP; c.l += c.v;   // a soft spring lifts them
-      if (c.m < 0.02 && Math.abs(c.l) < 0.02) continue;
-      const o = Math.max(c.l, 0), x = c.x, y = c.y - LIFT * o, al = Math.min(1, Math.max(c.m, o));
+      c.v += (c.m - c.l) * SPRING; c.v *= DAMP; c.l += c.v;   // a punchy spring: overshoots up, dips on the way down
+      if (c.m < 0.02 && Math.abs(c.l) < 0.02 && Math.abs(c.v) < 0.01) continue;
+      const o = Math.max(c.l, -0.35), x = c.x, y = c.y - LIFT * o, al = Math.min(1, Math.max(c.m, Math.abs(o)));
       ctx.beginPath(); hex(x, y);
       ctx.strokeStyle = `rgba(${L},${((0.12 + 0.8 * al) * GLOW).toFixed(3)})`; ctx.stroke();
       if (o > 0.05) {
