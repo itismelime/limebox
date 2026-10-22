@@ -9,22 +9,45 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
 <style>
-  html, body { height: 100%; margin: 0; }
-  body { display: grid; place-items: center; background: #0a0c0d; color: #7d8784;
-         font: 15px/1.5 system-ui, sans-serif; padding: 0 16px; }
+  html, body { margin: 0; }
+  body { background: #0a0c0d; color: #7d8784; font: 15px/1.5 system-ui, sans-serif; }
+  .hero { min-height: 100vh; display: grid; place-items: center; padding: 0 16px; box-sizing: border-box; }
+  .projects { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 16px 96px; }
+  .card { position: relative; display: grid; grid-template-columns: 1fr 1.15fr; gap: 28px; align-items: center;
+          padding: 28px; border: 1px solid #2b3330; border-radius: 12px; background: #0d1012; }
+  .card::before, .card::after { content: ""; position: absolute; width: 16px; height: 16px; border: 2px solid #a6ff3d; }
+  .card::before { left: -1px; top: -1px; border-right: 0; border-bottom: 0; border-top-left-radius: 12px; }
+  .card::after { right: -1px; bottom: -1px; border-left: 0; border-top: 0; border-bottom-right-radius: 12px; }
+  .card .name { height: 38px; width: auto; display: block; }
+  .card .desc { margin: 16px 0 0; color: #8c9692; font: 15px/1.55 system-ui, sans-serif; }
+  .card .links { display: flex; gap: 18px; margin-top: 16px; font: 400 13px 'JetBrains Mono', ui-monospace, monospace; }
+  .card .links a { color: #9aa49f; text-decoration: none; } .card .links a:first-child { color: #a6ff3d; }
+  .card .links a:hover { text-decoration: underline; }
+  .card .shot { width: 100%; height: auto; border-radius: 8px; border: 1px solid #2b3330; display: block; }
+  @media (max-width: 720px) { .card { grid-template-columns: 1fr; } }
   #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
   main { position: relative; z-index: 1; text-align: center; }
-  img { width: min(420px, 86vw); height: auto; display: block; }
+  .logo { width: min(420px, 86vw); height: auto; display: block; }
   p { margin: 24px 0 0; font: 400 15px/1.4 'JetBrains Mono', ui-monospace, monospace; color: #5f6b66; }
   .swe { color: #4f8fc9; } .den { color: #e7c64a; } .heart { color: #a6ff3d; }
 </style>
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
-<main>
-  <img src="limebox-logo.svg" alt="limebox">
+<div class="hero"><main>
+  <img class="logo" src="limebox-logo.svg" alt="limebox">
   <p>// from <span class="swe">swe</span><span class="den">den</span> with love <span class="heart">&lt;3</span></p>
-</main>
+</main></div>
+<section class="projects" aria-label="Projects">
+  <article class="card">
+    <div>
+      <img class="name" src="img/openvibes-wordmark.svg" alt="OpenVIBES" width="165" height="35">
+      <p class="desc">Free, self-hosted security for homelabs and small businesses: vulnerabilities, compliance and threat alarms in one fast console.</p>
+      <div class="links"><a href="https://openvibes-project.github.io/">website ↗</a><a href="https://github.com/openvibes-project">github ↗</a></div>
+    </div>
+    <a href="https://openvibes-project.github.io/"><img class="shot" src="img/openvibes-dashboard.webp" alt="The OpenVIBES console's dashboard" width="1414" height="788" loading="lazy"></a>
+  </article>
+</section>
 <script src="bg.js"></script>
 </body>
 </html>
