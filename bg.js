@@ -4,9 +4,10 @@
   const cv = document.getElementById('bg');
   const ctx = cv.getContext('2d');
   const S = 20, A = S * Math.sqrt(3) / 2, L = '166,255,61', R = 100;
+  const IDLE_WAIT = 1000, IDLE_FADE = 2500;  // ms: a still pointer's cubes start fading, then are gone
   const STRETCH = 0.45, FADE = 0.93, SPRING = 0.06, DAMP = 0.87, LIFT = 7, GLOW = 0.5;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W, H, cubes = [], p = null, prev = null, vx = 0, vy = 0;
+  let W, H, cubes = [], p = null, prev = null, vx = 0, vy = 0, moved = 0;
 
   function size() {
     const dpr = window.devicePixelRatio || 1;
@@ -44,13 +45,14 @@
     prev = p ? { ...p } : null;
     const sp = Math.hypot(vx, vy), ux = sp > 0.01 ? vx / sp : 1, uy = sp > 0.01 ? vy / sp : 0;
     const k = Math.min(sp / 18, 1) * STRETCH, ra = R * (1 + k), rb = R / (1 + k * 1.4);
+    const awake = Math.min(1, Math.max(0, 1 - (now - moved - IDLE_WAIT) / IDLE_FADE));
     for (const c of cubes) {
       let t = 0;
       if (p) {
         const dx = c.x - p.x, dy = c.y - p.y, e = Math.hypot((dx * ux + dy * uy) / ra, (-dx * uy + dy * ux) / rb);
-        if (e < 1) t = Math.cos(e * Math.PI / 2);
+        if (e < 1) t = Math.cos(e * Math.PI / 2) * awake;
       }
-      c.m = Math.max(c.m * FADE, t);                          // trail: lit cubes fade out
+      c.m = t < c.m ? Math.max(c.m * FADE, t) : t;            // trail: lit cubes fade out
       c.v += (c.m - c.l) * SPRING; c.v *= DAMP; c.l += c.v;   // a soft spring lifts them
       if (c.m < 0.02 && Math.abs(c.l) < 0.02) continue;
       const o = Math.max(c.l, 0), x = c.x, y = c.y - LIFT * o, al = Math.min(1, Math.max(c.m, o));
@@ -66,7 +68,7 @@
 
   size(); addEventListener('resize', size);
   if (still) { floor(); addEventListener('resize', floor); return; }
-  addEventListener('pointermove', e => { if (e.pointerType === 'mouse') p = { x: e.clientX, y: e.clientY }; });
+  addEventListener('pointermove', e => { if (e.pointerType === 'mouse') { p = { x: e.clientX, y: e.clientY }; moved = performance.now(); } });
   document.documentElement.addEventListener('mouseleave', () => { p = null; prev = null; });
   requestAnimationFrame(frame);
 })();
