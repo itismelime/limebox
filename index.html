@@ -31,6 +31,9 @@
   .card .links a { color: #9aa49f; text-decoration: none; } .card .links a:first-child { color: #a6ff3d; }
   .card .links a:hover { text-decoration: underline; }
   .card .shot { width: 100%; height: auto; border-radius: 8px; border: 1px solid #2b3330; display: block; }
+  .card + .card { margin-top: 24px; }
+  .card .title { display: flex; align-items: center; gap: 12px; margin: 0; font: 600 22px 'JetBrains Mono', ui-monospace, monospace; color: #e8eeeb; }
+  .card .title img { width: 38px; height: 38px; }
   @media (max-width: 720px) { .card { grid-template-columns: 1fr; } }
   #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
   .logo { width: 150px; height: auto; display: block; }
@@ -53,6 +56,14 @@
       <div class="links"><a href="https://openvibes-project.github.io/">website ↗</a><a href="https://github.com/openvibes-project">github ↗</a></div>
     </div>
     <a href="https://openvibes-project.github.io/"><img class="shot" src="img/openvibes-dashboard.webp" alt="The OpenVIBES console's dashboard" width="1414" height="788" loading="lazy"></a>
+  </article>
+  <article class="card">
+    <div>
+      <h2 class="title"><img src="img/ce-editor-icon.svg" alt="" width="38" height="38">Lime's CE Editor</h2>
+      <p class="desc">A desktop editor for DayZ server loot tables: a live loot map, types, spawnables, events and economy core, with mod files merged in. No more hand-editing XML.</p>
+      <div class="links"><a href="https://github.com/itismelime/limes-ce-editor">github ↗</a></div>
+    </div>
+    <a href="https://github.com/itismelime/limes-ce-editor"><img class="shot" src="img/ce-editor-map.webp" alt="Lime's CE Editor's loot map of Chernarus" width="1414" height="788" loading="lazy"></a>
   </article>
 </section>
 <footer class="foot">
