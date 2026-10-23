@@ -13,11 +13,14 @@
   body { background: #0a0c0d; color: #7d8784; font: 15px/1.5 system-ui, sans-serif;
          min-height: 100vh; display: flex; flex-direction: column; }
   .top, .intro, .projects { width: 100%; box-sizing: border-box; }
-  .top, .intro, .foot { position: relative; z-index: 1; }
+  .top, .about, .intro, .foot { position: relative; z-index: 1; }
   .top { display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; padding: 22px 16px; }
   .top a { font: 400 13px 'JetBrains Mono', ui-monospace, monospace; color: #9aa49f; text-decoration: none; }
   .top a:hover { color: #a6ff3d; }
-  .intro { max-width: 900px; margin: 40px auto 28px; padding: 0 16px; font: 400 14px 'JetBrains Mono', ui-monospace, monospace; color: #5f6b66; }
+  .about { width: 100%; box-sizing: border-box; max-width: 900px; margin: 40px auto 0; padding: 0 16px; }
+  .about h1 { margin: 0 0 8px; font: 600 22px 'JetBrains Mono', ui-monospace, monospace; color: #e8eeeb; }
+  .about p { margin: 0; color: #8c9692; font: 15px/1.55 system-ui, sans-serif; }
+  .intro { max-width: 900px; margin: 36px auto 28px; padding: 0 16px; font: 400 14px 'JetBrains Mono', ui-monospace, monospace; color: #5f6b66; }
   .foot { margin-top: auto; text-align: center; padding: 8px 16px 40px; }
   .projects { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 16px 40px; }
   .card { position: relative; display: grid; grid-template-columns: 1fr 1.15fr; gap: 28px; align-items: center;
@@ -47,6 +50,10 @@
   <img class="logo" src="limebox-logo.svg" alt="limebox" width="150" height="44">
   <a href="https://github.com/itismelime">github ↗</a>
 </header>
+<section class="about">
+  <h1>hi, I'm lime.</h1>
+  <p>I make stuff for fun. Cybersecurity, gaming and other things.</p>
+</section>
 <div class="intro">// projects</div>
 <section class="projects" aria-label="Projects">
   <article class="card">
