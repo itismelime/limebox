@@ -37,7 +37,15 @@
   .card + .card { margin-top: 24px; }
   .card .title { display: flex; align-items: center; gap: 12px; margin: 0; font: 600 22px 'JetBrains Mono', ui-monospace, monospace; color: #e8eeeb; }
   .card .title img { width: 38px; height: 38px; }
-  @media (max-width: 720px) { .card { grid-template-columns: 1fr; } }
+  .projects + .intro { margin-top: 0; }
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .tile { display: block; padding: 16px 18px; border: 1px solid #2b3330; border-radius: 10px; background: #0d1012; text-decoration: none; }
+  .tile:hover { border-color: #a6ff3d; }
+  .tile .n { display: flex; justify-content: space-between; font: 600 15px 'JetBrains Mono', ui-monospace, monospace; color: #e8eeeb; }
+  .tile .n span { font-weight: 400; color: #5f6b66; }
+  .tile p { margin: 8px 0 0; color: #8c9692; font: 14px/1.5 system-ui, sans-serif; }
+  .tile .tag { margin-top: 12px; font: 12px 'JetBrains Mono', ui-monospace, monospace; color: #5f6b66; }
+  @media (max-width: 720px) { .card, .tiles { grid-template-columns: 1fr; } }
   #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
   .logo { width: 150px; height: auto; display: block; }
   .tag { margin: 0; font: 400 15px/1.4 'JetBrains Mono', ui-monospace, monospace; color: #5f6b66; }
@@ -72,6 +80,14 @@
     </div>
     <a href="https://github.com/itismelime/limes-ce-editor"><img class="shot" src="img/ce-editor-map.webp" alt="Lime's CE Editor's loot map of Chernarus" width="1414" height="788" loading="lazy"></a>
   </article>
+</section>
+<div class="intro">// smaller things</div>
+<section class="projects tiles" aria-label="Smaller things">
+  <a class="tile" href="https://github.com/itismelime/cpe-toolkit">
+    <div class="n">cpe-toolkit <span>↗</span></div>
+    <p>Map software to CPE names, then check it for known vulnerabilities and end-of-life dates.</p>
+    <div class="tag">python · no dependencies</div>
+  </a>
 </section>
 <footer class="foot">
   <p class="tag">// from <span class="swe">swe</span><span class="den">den</span> with love <span class="heart">&lt;3</span></p>
